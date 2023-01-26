@@ -1,7 +1,19 @@
-//Сеть Кохонена для вычисления операции XOR
+////
+//СЕТЬ КОХОНЕНА. ПРЯМОЕ РАСПРОСТРАНЕНИЕ СИГНАЛА​
+//24.01 
+////
 
 //Входные данные
 int8_t DataSensor[] = { 0, 0 };
+
+float intput_el[] = {0.23, 0.11, 0.41};
+
+float intput_neuron[3][3] = {
+  {-0.10, -0.34},
+  {0.34, -0.01},
+  {-0.22, 0.31},
+};
+
 
 //Элемент смещения
 int8_t Bias1 = 1;
@@ -22,7 +34,7 @@ int8_t ActivityOutputNeuron;
 //Вводим данные, которые в дальнейшем будут обрабатываться
 ////Весовые коэффиценты от входного слоя к скрытому
 float InputWeight[3][2] = {
-  { -1, -1 },
+  { 0.23, 0.10 },
   { -1, -1 },    //Строка + столбец
   { 1.5, 0.5 },  //2 элемент 1.5 .. 2-строчка 1 столбец = 0.5
 };
@@ -37,32 +49,21 @@ void setup() {
 
 void loop() {
 //1. Рассчитываем комбинированные вводы для 0-ого скрытого нейрона
-  HiddenCombined[0] = (DataSensor[0] * InputWeight[0][0] ) + 
-                      (DataSensor[1] * InputWeight[1][0] ) +
-                      ( Bias1 * InputWeight[2][0] );
+  HiddenCombined[0] = (input_el[0] * input_neuron[0][0] ) + 
+                      (input_el[1] * input_neuron[1][0] ) +
+                      (input_el[2] * input_neuron[2][0] );
 
 //2. Рассчитываем комбинированные вводы для 1-ого скрытого нейрона
-  HiddenCombined[1] = (DataSensor[0] * InputWeight[0][1] ) + 
-                      (DataSensor[1] * InputWeight[1][1] ) +
-                      ( Bias1 * InputWeight[2][1] );
+  HiddenCombined[1] = (input_el[0] * input_neuron[0][0] ) + 
+                      (input_el[1] * input_neuron[1][1] ) +
+                      (input_el[2] * input_neuron[2][2] );
 
-//3. Применяем функцию активности для 0-ого скрытого нейрона
-  ActivityNeuron[0] = signFunction(HiddenCombined[0]);
+Serial.println(HiddenCombined[0]);
+Serial.println(HiddenCombined[1]);
 
-//4. Применяем функцию активности для 1-ого скрытого нейрона
-  ActivityNeuron[1] = signFunction(HiddenCombined[1]);
-
-//5. Расчитываем комбинированный ввод для выхода сети
- OutputCombined = (ActivityNeuron[0] * OutputWeight[0]) +
-                  (ActivityNeuron[1] * OutputWeight[1]) + 
-                  ( Bias2 * OutputWeight[2] );
-
-//6. Рассчитываем активность для выхода сети
- ActivityOutputNeuron = signFunction( OutputCombined );
-
-//7. Выводим полученные данные
- Serial.println( ActivityOutputNeuron );
-}
+// flaot Elemnt_Activity (float val) {
+//   return 1/( 1 + pow (EULER), -val));
+// }
 
 
 //Функция активации (прыжковая) - JumpFuntcion

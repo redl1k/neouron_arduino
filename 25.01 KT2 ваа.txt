@@ -1,0 +1,81 @@
+  Serial.println(ActivityNeuron[0]); //0.48
+  Serial.println(hidden_layer[0]); //-0.40
+  Serial.println(ActivityNeuron[1]); //0.51
+  Serial.println(hidden_layer[1]); //0.11
+  Serial.println("---------");
+    Serial.println("---------");
+      Serial.println("---------");
+      
+float input_neuron[3][3] = {
+  { -0.10, -0.34 },
+  { 0.34, -0.01 },
+  { -0.22, 0.31 },
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+input_el[0]
+0.23
+--------
+input_el[1]
+0.11
+--------
+input_el[2]
+0.41
+--------
+--------
+--------
+input_neuron[0][0]
+-0.10
+--------
+input_neuron[1][0]
+0.13
+--------
+input_neuron[2][0]
+-0.22
+
+
+
+
+
+
+
+input_neuron[0][1]
+0.34
+--------
+input_neuron[1][1]
+-0.01
+--------
+input_neuron[2][1]
+0.31
+--------
+--------
+--------
+input_neuron[0][1]
+0.34
+--------
+input_neuron[1][1]
+-0.01
+--------
+input_neuron[2][1]
+0.31
+--------
+--------
+--------
+
+
+
